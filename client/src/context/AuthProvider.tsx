@@ -2,6 +2,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface AuthContextType {
   user: any;
+  token: string;
   setUser: React.Dispatch<
     React.SetStateAction<{ name: string; email: string }>
   >;
@@ -13,6 +14,7 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<any>();
+  const [token, setToken] = useState<string>("");
 
   const logout = () => {
     setUser({});
@@ -22,13 +24,15 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user")!);
-    if (user?.email) {
+    const token = localStorage.getItem("token");
+    if (user?.email && token) {
       setUser(user);
+      setToken(token);
     }
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, logout }}>
+    <AuthContext.Provider value={{ user, setUser, logout, token }}>
       {children}
     </AuthContext.Provider>
   );

@@ -9,6 +9,7 @@ export const isAuthenticated = (
 ) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
+    console.log(token);
     if (!token) {
       throw new Error("token not found");
     }
@@ -21,6 +22,8 @@ export const isAuthenticated = (
 
     next();
   } catch (error) {
+    console.log(error);
+
     res.status(403).send({ success: false, message: "User not authorised" });
   }
 };
