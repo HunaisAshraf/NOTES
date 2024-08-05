@@ -52,7 +52,7 @@ export const deleteNote = async (req: IRequestWithUser, res: Response) => {
       throw new Error("not found");
     }
 
-    await NotesModel.findByIdAndDelete(id);
+    await NotesModel.findByIdAndDelete(noteid);
 
     return res.status(200).json({
       success: true,
