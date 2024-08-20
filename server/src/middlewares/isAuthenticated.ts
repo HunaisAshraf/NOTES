@@ -9,11 +9,11 @@ export const isAuthenticated = (
 ) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
+    console.log(token, process.env.JWT_SECRET!);
     if (!token) {
       throw new Error("token not found");
     }
-
-    const user = jwt.verify(token, process.env.JWT_SECRET!) as any;
+    const user: any = jwt.verify(token, process.env.JWT_SECRET!);
     if (!user) {
       throw new Error("token not found");
     }

@@ -21,7 +21,7 @@ const Card = ({ note }: { note: { _id: string; note: string } }) => {
       style={style}
       {...attributes}
       {...listeners}
-      className="w-52 h-48  rounded border-2 p-2 hover:border-yellow-200 hover:border-2"
+      className="bg-yellow-50cd w-52 h-48  rounded border-2 p-2 hover:border-yellow-200 hover:border-2"
     >
       <p>{note.note}</p>
     </div>
